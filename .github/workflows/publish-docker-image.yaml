@@ -8,6 +8,10 @@ on:
       - '*'
 
 env:
+  GO_VERSION: "1.17"
+  NODE_VERSION: "16"
+  OPENVPN_VERSION: "2.5.8"
+
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}/ovpn-admin
   IMAGE_TAG: latest
@@ -31,12 +35,23 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Set image_tag for tag pushes
+        id: docker_tag
+        run: |
+          echo "IMAGE_TAG=${{ github.ref_name }}" >> $GITHUB_ENV
+        if: github.ref_type == "tag"
+
       - name: Build and push ovpn-admin image
         id: docker_build
         uses: docker/build-push-action@v3
         with:
           context: ./
           file: ./Dockerfile
+          target: admin-webui
+          build-args: |
+            GO_VERSION=${{ env.GO_VERSION }}
+            NODE_VERSION=${{ env.NODE_VERSION }}
+            OPENVPN_VERSION=${{ env.OPENVPN_VERSION }}
           push: true
           tags: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}

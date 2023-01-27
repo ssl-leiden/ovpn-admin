@@ -45,7 +45,7 @@ RUN \
 
 # Web UI final image
 # ------------------------------------------------
-FROM alpine:${ALPINE_TAG}
+FROM alpine:${ALPINE_TAG} AS admin-webui
 
 ARG OPENVPN_PACKAGE_VERSION
 
