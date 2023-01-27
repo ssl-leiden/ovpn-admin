@@ -17,13 +17,14 @@ FROM node:${NODE_VERSION}-alpine${ALPINE_VERSION} AS frontend-builder
 
 WORKDIR /build
 
-# Install npm dependencies
-COPY --link frontend/package.json frontend/package-lock.json ./
-RUN npm install
+# Install yarn dependencies
+COPY --link frontend/.yarn/ ./.yarn/
+COPY --link frontend/.yarnrc.yml frontend/package.json frontend/yarn.lock ./
+RUN yarn install --immutable
 
 # Build frontend assets
 COPY --link frontend/ ./
-RUN npm run build
+RUN yarn run build
 
 # Backend-builder
 # ------------------------------------------------

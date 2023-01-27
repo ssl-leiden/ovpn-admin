@@ -1,0 +1,8 @@
+/*
+/*/
+!/patches/
+!/releases/
+!/plugins/
+!/sdks/
+!/versions/
+!.gitignore
