@@ -39,7 +39,7 @@ jobs:
         id: docker_tag
         run: |
           echo "IMAGE_TAG=${{ github.ref_name }}" >> $GITHUB_ENV
-        if: github.ref_type == "tag"
+        if: github.ref_type == 'tag'
 
       - name: Build and push ovpn-admin image
         id: docker_build
