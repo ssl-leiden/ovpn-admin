@@ -25,6 +25,11 @@ import (
 	"time"
 	"unicode/utf8"
 
+	"github.com/google/uuid"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/client-go/kubernetes"
+	"k8s.io/client-go/rest"
+
 	"github.com/gobuffalo/packr/v2"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
@@ -1000,7 +1005,7 @@ func (oAdmin *OvpnAdmin) userCreate(username string, password string, privateKey
 			easyRsaCommand = fmt.Sprintf("build-client-full %s nopass", username)
 		}
 
-		o := runBash(fmt.Sprintf("cd %s && easyrsa %s 1>/dev/null", *easyrsaDirPath, easyRsaCommand))
+		o := runBash(fmt.Sprintf("cd %s && echo 'yes' | easyrsa %s 1>/dev/null", *easyrsaDirPath, easyRsaCommand))
 		log.Debug(o)
 	}
 
