@@ -35,8 +35,8 @@ import (
 )
 
 const (
-	usernameRegexp       = `^([a-zA-Z0-9_.-@])+$`
-	passwordRegexp       = `^([a-zA-Z0-9_.-@])+$`
+	usernameRegexp       = `^([a-zA-Z0-9_.@\-])+$`
+	passwordRegexp       = `^([a-zA-Z0-9_.@\-])+$`
 	passwordMinLength    = 6
 	downloadCertsApiUrl  = "/api/data/certs/download"
 	downloadCcdApiUrl    = "/api/data/ccd/download"
@@ -878,7 +878,7 @@ func validateUsername(username string) error {
 	if validUsername.MatchString(username) {
 		return nil
 	} else {
-		return errors.New(fmt.Sprintf("Username can only contains %s", usernameRegexp))
+		return errors.New(fmt.Sprintf("Username must only contain characters from regex: %s", usernameRegexp))
 	}
 }
 
@@ -887,7 +887,7 @@ func validatePassword(password string, passwordName string) error {
 	if utf8.RuneCountInString(password) < passwordMinLength {
 		return errors.New(fmt.Sprintf("%s too short, password length must be greater or equal %d", passwordName, passwordMinLength))
 	} else if !validPassword.MatchString(password) {
-		return errors.New(fmt.Sprintf("Password can only contains %s", passwordRegexp))
+		return errors.New(fmt.Sprintf("Password must only contain characters from regex: %s", passwordRegexp))
 	} else {
 		return nil
 	}

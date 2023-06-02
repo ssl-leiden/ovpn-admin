@@ -49,9 +49,9 @@
           <h4>Add new user</h4>
         </div>
         <div class="modal-body">
-          <input type="text" class="form-control el-square modal-el-margin" placeholder="Username [_a-zA-Z0-9\.-]" v-model="u.newUserName">
-          <input type="password" class="form-control el-square modal-el-margin" minlength="6" autocomplete="off" placeholder="Password [_a-zA-Z0-9\.-]" v-model="u.newUserPassword" v-if="modulesEnabled.includes('passwdAuth')">
-          <input type="password" class="form-control el-square modal-el-margin" minlength="6" autocomplete="off" placeholder="Private key password [_a-zA-Z0-9\.-]" v-model="u.newUserPrivateKeyPassword" v-if="modulesEnabled.includes('privateKeyPasswdAuth')">
+          <input type="text" class="form-control el-square modal-el-margin" placeholder="Username [a-zA-Z0-9_.@-]" v-model="u.newUserName">
+          <input type="password" class="form-control el-square modal-el-margin" minlength="6" autocomplete="off" placeholder="Password [a-zA-Z0-9_.@-]" v-model="u.newUserPassword" v-if="modulesEnabled.includes('passwdAuth')">
+          <input type="password" class="form-control el-square modal-el-margin" minlength="6" autocomplete="off" placeholder="Private key password [a-zA-Z0-9_.@-]" v-model="u.newUserPrivateKeyPassword" v-if="modulesEnabled.includes('privateKeyPasswdAuth')">
         </div>
 
         <div class="modal-footer justify-content-center" v-if="u.newUserCreateError.length > 0">
@@ -74,7 +74,7 @@
           <h4>Change password for: <strong>{{ username }}</strong></h4>
         </div>
         <div class="modal-body">
-          <input type="password" class="form-control el-square modal-el-margin" minlength="6" autocomplete="off" placeholder="Password [_a-zA-Z0-9\.-]" v-model="u.newPassword">
+          <input type="password" class="form-control el-square modal-el-margin" minlength="6" autocomplete="off" placeholder="Password [a-zA-Z0-9_.@-]" v-model="u.newPassword">
         </div>
 
         <div class="modal-footer justify-content-center" v-if="u.passwordChangeMessage.length > 0">
@@ -194,11 +194,11 @@
         </div>
         <div class="modal-body" v-if="modulesEnabled.includes('passwdAuth')">
           <h4>Enter new password:</h4>
-          <input type="password" class="form-control el-square modal-el-margin" minlength="6" autocomplete="off" placeholder="Password [_a-zA-Z0-9\.-]" v-model="u.newPassword">
+          <input type="password" class="form-control el-square modal-el-margin" minlength="6" autocomplete="off" placeholder="Password [a-zA-Z0-9_.@-]" v-model="u.newPassword">
         </div>
         <div class="modal-body" v-if="modulesEnabled.includes('privateKeyPasswdAuth')">
           <h4>Enter new private key password:</h4>
-          <input type="password" class="form-control el-square modal-el-margin" minlength="6" autocomplete="off" placeholder="Private key password [_a-zA-Z0-9\.-]" v-model="u.newPrivateKeyPassword">
+          <input type="password" class="form-control el-square modal-el-margin" minlength="6" autocomplete="off" placeholder="Private key password [a-zA-Z0-9_.@-]" v-model="u.newPrivateKeyPassword">
         </div>
 
         <div class="modal-footer justify-content-center" v-if="u.rotateUserMessage.length > 0">
