@@ -10,8 +10,8 @@ on:
 
 env:
   GO_VERSION: "1.21"
-  NODE_VERSION: "20.5.1"
-  OPENVPN_VERSION: "2.6.5"
+  NODE_VERSION: "20"
+  OPENVPN_VERSION: "2.6.8"
 
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}/ovpn-admin
